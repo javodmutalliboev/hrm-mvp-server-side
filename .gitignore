@@ -2,6 +2,9 @@
 /dist
 /node_modules
 
+# files
+bcrypter.js
+
 # Logs
 logs
 *.log

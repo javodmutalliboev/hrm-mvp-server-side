@@ -1,54 +1,26 @@
-/* eslint-disable prettier/prettier */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, ObjectId } from 'mongoose';
 import * as mongoose from 'mongoose';
+import { Role } from './roles/roles.model';
+import { Transform, Exclude, Type } from 'class-transformer';
 
+export type UserDocument = User & Document;
 
 @Schema()
-export class User extends Document {
+export class User {
+  @Transform(({ value }) => value.toString)
+  _id: ObjectId;
+
+  @Prop({ unique: true })
+  username: string;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Role.toString() })
+  @Type(() => Role)
+  role: Role;
+
   @Prop()
-  name: string;
-
-
+  @Exclude()
+  password: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
-
-
-// export const UserSchema = new mongoose.Schema(
-//   {
-//     username: {
-//       type: String,
-//       required: true,
-//       unique: true,
-//     },
-//     role: {
-//       type: String,
-//       required: true,
-//     },
-//     permissions: {
-//       type: Array<Permission>,
-//       required: true,
-//     },
-//     password: {
-//       type: String,
-//       required: true,
-//     },
-//   },
-//   { timestamps: true },
-// );
-
-// export interface User extends mongoose.Document {
-//   _id: string;
-//   username: string;
-//   role: string;
-//   permissions: Permission[];
-//   password: string;
-// }
-
-// export interface Permission {
-//   read: boolean;
-//   write: boolean;
-//   update: boolean;
-//   delete: boolean;
-// }

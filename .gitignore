@@ -3,7 +3,7 @@
 /node_modules
 
 # files
-bcrypter.js
+src/shared/utils/bcrypter.js
 
 # Logs
 logs

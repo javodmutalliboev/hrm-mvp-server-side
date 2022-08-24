@@ -1,5 +1,5 @@
 import { Injectable, NotAcceptableException } from '@nestjs/common';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from 'src/modules/users/users.service';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -15,6 +15,7 @@ export class AuthService {
       return {
         userId: user.id,
         userName: user.username,
+        userRole: user.role,
       };
     }
     return null;

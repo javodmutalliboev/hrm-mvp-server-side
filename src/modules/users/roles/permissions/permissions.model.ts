@@ -13,4 +13,4 @@ export class Permission {
   name: string;
 }
 
-export const PostSchema = SchemaFactory.createForClass(Permission);
+export const PermissionSchema = SchemaFactory.createForClass(Permission);

@@ -25,4 +25,4 @@ export class Role {
   all_permissions: boolean;
 }
 
-export const PostSchema = SchemaFactory.createForClass(Role);
+export const RoleSchema = SchemaFactory.createForClass(Role);
